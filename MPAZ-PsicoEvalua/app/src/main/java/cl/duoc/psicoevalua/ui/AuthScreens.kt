@@ -263,29 +263,6 @@ fun LoginScreen(
                     }
                 }
             }
-
-            Spacer(Modifier.height(16.dp))
-            Aparecer(3) {
-                Card(
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.18f))
-                ) {
-                    Column(Modifier.padding(14.dp)) {
-                        Text(
-                            "Cuentas de demostración (datos ficticios)",
-                            color = Color.White,
-                            fontWeight = FontWeight.SemiBold,
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            "Psicólogo: psicologo@mpaz.cl\nEstudiante: estudiante@mpaz.cl\nContraseña: Demo1234",
-                            color = Color.White.copy(alpha = 0.92f),
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                    }
-                }
-            }
         }
     }
 }

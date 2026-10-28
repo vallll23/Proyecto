@@ -70,9 +70,7 @@ import cl.duoc.psicoevalua.data.EstadoInstrumento
 import cl.duoc.psicoevalua.data.Usuario
 import cl.duoc.psicoevalua.ui.theme.GradientePrincipal
 
-// ===============================================================
-// PANEL PRINCIPAL DEL PSICÓLOGO
-// ===============================================================
+
 @Composable
 fun PsiHomeScreen(
     usuario: Usuario,
@@ -185,9 +183,7 @@ private fun TarjetaContador(valor: Int, etiqueta: String, color: Color, modifier
     }
 }
 
-// ===============================================================
-// CATÁLOGO DE INSTRUMENTOS
-// ===============================================================
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CatalogoScreen(onVolver: () -> Unit, onAbrir: (Int) -> Unit) {
@@ -242,9 +238,7 @@ fun CatalogoScreen(onVolver: () -> Unit, onAbrir: (Int) -> Unit) {
     }
 }
 
-// ===============================================================
-// DETALLE DE INSTRUMENTO
-// ===============================================================
+
 @Composable
 fun DetalleInstrumentoScreen(id: Int, onVolver: () -> Unit, onCrear: (Int) -> Unit) {
     val inst = DatosDemo.instrumento(id)
@@ -334,9 +328,7 @@ fun DetalleInstrumentoScreen(id: Int, onVolver: () -> Unit, onCrear: (Int) -> Un
     }
 }
 
-// ===============================================================
-// CREAR APLICACIÓN (formulario -> "Para una futura actualización")
-// ===============================================================
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CrearAplicacionScreen(
@@ -451,9 +443,7 @@ fun CrearAplicacionScreen(
     )
 }
 
-// ===============================================================
-// CÓDIGO TEMPORAL (demostración)
-// ===============================================================
+
 @Composable
 fun CodigoTemporalScreen(onVolver: () -> Unit, onSupervisar: () -> Unit, onPanel: () -> Unit) {
     val codigo = remember { "MPAZ-${(1000..9999).random()}" }

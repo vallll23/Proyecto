@@ -56,9 +56,7 @@ import cl.duoc.psicoevalua.data.DatosDemo
 import cl.duoc.psicoevalua.data.EstadoAplicacion
 import cl.duoc.psicoevalua.data.Usuario
 
-// ===============================================================
-// Tarjeta de aplicación (reutilizable)
-// ===============================================================
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TarjetaAplicacion(app: Aplicacion, mostrarProgreso: Boolean, onClick: () -> Unit) {
@@ -98,9 +96,7 @@ fun TarjetaAplicacion(app: Aplicacion, mostrarProgreso: Boolean, onClick: () -> 
     }
 }
 
-// ===============================================================
-// LISTA: supervisar progreso / revisar respuestas
-// ===============================================================
+
 @Composable
 fun AplicacionesScreen(modo: String, onVolver: () -> Unit, onAbrir: (Int) -> Unit) {
     val supervisar = modo == "supervisar"
@@ -144,9 +140,7 @@ fun AplicacionesScreen(modo: String, onVolver: () -> Unit, onAbrir: (Int) -> Uni
     }
 }
 
-// ===============================================================
-// DETALLE DE APLICACIÓN: respuestas, puntaje de prueba, observación
-// ===============================================================
+
 @Composable
 fun DetalleAplicacionScreen(id: Int, usuario: Usuario, onVolver: () -> Unit) {
     val app = DatosDemo.aplicacion(id)
@@ -312,9 +306,7 @@ private fun PuntajeAnimado(puntaje: Int, maximo: Int) {
     }
 }
 
-// ===============================================================
-// HISTORIAL: aplicaciones + trazabilidad
-// ===============================================================
+
 @Composable
 fun HistorialScreen(onVolver: () -> Unit, onAbrir: (Int) -> Unit) {
     var tab by rememberSaveable { mutableStateOf(0) }

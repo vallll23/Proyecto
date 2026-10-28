@@ -73,9 +73,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.math.roundToInt
 
-// ===============================================================
-// SPLASH
-// ===============================================================
+
 @Composable
 fun SplashScreen(onTerminar: () -> Unit) {
     val escala = remember { Animatable(0.4f) }
@@ -130,9 +128,7 @@ fun SplashScreen(onTerminar: () -> Unit) {
     }
 }
 
-// ===============================================================
-// LOGIN (autenticación con SQLite)
-// ===============================================================
+
 @Composable
 fun LoginScreen(
     db: DatabaseHelper,
@@ -147,7 +143,7 @@ fun LoginScreen(
     var intentosFallidos by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
 
-    // Animación de "sacudida" cuando hay error
+
     val sacudida = remember { Animatable(0f) }
     LaunchedEffect(intentosFallidos) {
         if (intentosFallidos > 0) {
@@ -294,9 +290,7 @@ fun LoginScreen(
     }
 }
 
-// ===============================================================
-// REGISTRO (SQLite)
-// ===============================================================
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistroScreen(

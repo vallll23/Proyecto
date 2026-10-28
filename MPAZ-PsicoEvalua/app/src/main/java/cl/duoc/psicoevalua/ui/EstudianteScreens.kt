@@ -66,9 +66,7 @@ import androidx.compose.ui.unit.sp
 import cl.duoc.psicoevalua.data.DatosDemo
 import cl.duoc.psicoevalua.ui.theme.GradientePrincipal
 
-// ===============================================================
-// ESTUDIANTE 1: ingreso con código temporal
-// ===============================================================
+
 @Composable
 fun EstCodigoScreen(
     nombre: String,
@@ -149,9 +147,7 @@ fun EstCodigoScreen(
     )
 }
 
-// ===============================================================
-// ESTUDIANTE 2: instrucciones
-// ===============================================================
+
 @Composable
 fun EstInstruccionesScreen(id: Int, onVolver: () -> Unit, onComenzar: () -> Unit) {
     val inst = DatosDemo.instrumento(id)
@@ -197,9 +193,7 @@ fun EstInstruccionesScreen(id: Int, onVolver: () -> Unit, onComenzar: () -> Unit
     }
 }
 
-// ===============================================================
-// ESTUDIANTE 3: cuestionario (una pregunta por pantalla)
-// ===============================================================
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EstCuestionarioScreen(id: Int, onFinalizar: () -> Unit, onSalir: () -> Unit) {
@@ -342,9 +336,7 @@ fun EstCuestionarioScreen(id: Int, onFinalizar: () -> Unit, onSalir: () -> Unit)
     }
 }
 
-// ===============================================================
-// ESTUDIANTE 4: confirmación (sin mostrar resultados)
-// ===============================================================
+
 @Composable
 fun EstConfirmacionScreen(onSalir: () -> Unit) {
     val escala = remember { Animatable(0f) }

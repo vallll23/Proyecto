@@ -1,10 +1,6 @@
 package cl.duoc.psicoevalua.data
 
-/**
- * Datos 100% FICTICIOS para la demostración del MVP.
- * No hay estudiantes, respuestas ni resultados reales.
- * Los instrumentos son propios/simulados (no se copian pruebas protegidas).
- */
+
 
 enum class EstadoInstrumento(val etiqueta: String) {
     DISPONIBLE("Disponible"),

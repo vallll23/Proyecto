@@ -46,9 +46,7 @@ import cl.duoc.psicoevalua.ui.theme.GradientePrincipal
 
 private data class PuntoPrivacidad(val icono: ImageVector, val titulo: String, val texto: String)
 
-// ===============================================================
-// AVISO DE PRIVACIDAD Y ALCANCE (disponible para ambos perfiles)
-// ===============================================================
+
 @Composable
 fun PrivacidadScreen(onVolver: () -> Unit) {
     val puntos = listOf(
@@ -108,9 +106,7 @@ fun PrivacidadScreen(onVolver: () -> Unit) {
     }
 }
 
-// ===============================================================
-// PERFIL + CERRAR SESIÓN
-// ===============================================================
+
 @Composable
 fun PerfilScreen(usuario: Usuario, onVolver: () -> Unit, onCerrarSesion: () -> Unit) {
     var confirmar by remember { mutableStateOf(false) }

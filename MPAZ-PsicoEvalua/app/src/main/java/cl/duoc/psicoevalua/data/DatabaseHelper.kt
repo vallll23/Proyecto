@@ -28,11 +28,7 @@ sealed class ResultadoRegistro {
     data class Error(val mensaje: String) : ResultadoRegistro()
 }
 
-/**
- * Base de datos local SQLite (almacenamiento offline).
- * Es el único apartado con persistencia real: registro e inicio de sesión.
- * Las contraseñas NUNCA se guardan en texto plano: se almacena SHA-256(salt + clave).
- */
+
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, NOMBRE_DB, null, VERSION_DB) {
 
@@ -55,7 +51,7 @@ class DatabaseHelper(context: Context) :
             )
             """.trimIndent()
         )
-        // Cuentas de demostración (completamente ficticias)
+
         insertarUsuario(db, "Psicólogo Demo", "psicologo@mpaz.cl", "Demo1234", Rol.PSICOLOGO)
         insertarUsuario(db, "Estudiante Demo", "estudiante@mpaz.cl", "Demo1234", Rol.ESTUDIANTE)
     }
@@ -65,7 +61,7 @@ class DatabaseHelper(context: Context) :
         onCreate(db)
     }
 
-    // ---------- Operaciones públicas ----------
+
 
     fun registrarUsuario(nombre: String, correo: String, clave: String, rol: Rol): ResultadoRegistro {
         val correoNormalizado = correo.trim().lowercase(Locale.ROOT)
@@ -108,7 +104,7 @@ class DatabaseHelper(context: Context) :
         }
     }
 
-    // ---------- Utilidades privadas ----------
+
 
     private fun insertarUsuario(
         db: SQLiteDatabase,

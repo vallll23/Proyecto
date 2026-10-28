@@ -74,9 +74,7 @@ import cl.duoc.psicoevalua.data.EstadoAplicacion
 import cl.duoc.psicoevalua.data.EstadoInstrumento
 import kotlinx.coroutines.delay
 
-// ---------------------------------------------------------------
-// Animación de entrada escalonada (fade + deslizamiento)
-// ---------------------------------------------------------------
+
 @Composable
 fun Aparecer(
     indice: Int = 0,
@@ -97,9 +95,8 @@ fun Aparecer(
     }
 }
 
-// ---------------------------------------------------------------
-// Logo que "flota" suavemente
-// ---------------------------------------------------------------
+
+
 @Composable
 fun LogoAnimado(modifier: Modifier = Modifier, tamano: Dp = 80.dp) {
     val transicion = rememberInfiniteTransition(label = "logo")
@@ -128,9 +125,8 @@ fun LogoAnimado(modifier: Modifier = Modifier, tamano: Dp = 80.dp) {
     }
 }
 
-// ---------------------------------------------------------------
-// Estructura base de pantalla con barra superior
-// ---------------------------------------------------------------
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PantallaBase(
@@ -164,9 +160,8 @@ fun PantallaBase(
     )
 }
 
-// ---------------------------------------------------------------
-// Campo de texto reutilizable
-// ---------------------------------------------------------------
+
+
 @Composable
 fun CampoTexto(
     valor: String,
@@ -201,9 +196,8 @@ fun CampoTexto(
     )
 }
 
-// ---------------------------------------------------------------
-// Botón principal con animación al presionar
-// ---------------------------------------------------------------
+
+
 @Composable
 fun BotonPrincipal(
     texto: String,
@@ -246,9 +240,8 @@ fun BotonPrincipal(
     }
 }
 
-// ---------------------------------------------------------------
-// Diálogo "Para una futura actualización" (formularios sin BD)
-// ---------------------------------------------------------------
+
+
 @Composable
 fun DialogoFuturaActualizacion(
     visible: Boolean,
@@ -278,9 +271,7 @@ fun DialogoFuturaActualizacion(
     )
 }
 
-// ---------------------------------------------------------------
-// Chips y colores de estado
-// ---------------------------------------------------------------
+
 fun colorEstado(estado: EstadoAplicacion): Color = when (estado) {
     EstadoAplicacion.PENDIENTE -> Color(0xFFB7791F)
     EstadoAplicacion.EN_DESARROLLO -> Color(0xFF2563A8)
@@ -307,9 +298,7 @@ fun ChipEstado(texto: String, color: Color) {
     }
 }
 
-// ---------------------------------------------------------------
-// Tarjeta de acción con efecto "rebote" al presionar
-// ---------------------------------------------------------------
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TarjetaAccion(
@@ -367,9 +356,8 @@ fun TarjetaAccion(
     }
 }
 
-// ---------------------------------------------------------------
-// Barra de progreso animada (parte desde 0)
-// ---------------------------------------------------------------
+
+
 @Composable
 fun ProgresoAnimado(progreso: Float, modifier: Modifier = Modifier) {
     var objetivo by remember { mutableFloatStateOf(0f) }
@@ -388,9 +376,8 @@ fun ProgresoAnimado(progreso: Float, modifier: Modifier = Modifier) {
     )
 }
 
-// ---------------------------------------------------------------
-// Utilidades de texto
-// ---------------------------------------------------------------
+
+
 @Composable
 fun SeccionTitulo(texto: String) {
     Text(

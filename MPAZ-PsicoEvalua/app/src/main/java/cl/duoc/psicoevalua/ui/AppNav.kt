@@ -25,7 +25,7 @@ object Rutas {
     const val LOGIN = "login"
     const val REGISTRO = "registro"
 
-    // Psicólogo
+
     const val PSI_HOME = "psi_home"
     const val CATALOGO = "catalogo"
     const val DETALLE_INSTRUMENTO = "instrumento/{id}"
@@ -35,11 +35,11 @@ object Rutas {
     const val DETALLE_APLICACION = "aplicacion/{id}"
     const val HISTORIAL = "historial"
 
-    // Comunes
+
     const val PRIVACIDAD = "privacidad"
     const val PERFIL = "perfil"
 
-    // Estudiante
+
     const val EST_CODIGO = "est_codigo"
     const val EST_INSTRUCCIONES = "est_instrucciones/{id}"
     const val EST_CUESTIONARIO = "est_cuestionario/{id}"
@@ -53,7 +53,7 @@ object Rutas {
     fun estCuestionario(id: Int) = "est_cuestionario/$id"
 }
 
-/** Control de acceso por perfil: si el rol no corresponde, se vuelve al login. */
+
 @Composable
 private fun RutaProtegida(
     usuario: Usuario?,
@@ -96,7 +96,7 @@ fun AppNav() {
             slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(350)) + fadeOut(tween(250))
         }
     ) {
-        // ---------------- Acceso ----------------
+
         composable(Rutas.SPLASH) {
             SplashScreen(onTerminar = {
                 nav.navigate(Rutas.LOGIN) { popUpTo(Rutas.SPLASH) { inclusive = true } }
@@ -121,7 +121,7 @@ fun AppNav() {
             )
         }
 
-        // ---------------- Psicólogo ----------------
+
         composable(Rutas.PSI_HOME) {
             RutaProtegida(usuario, Rol.PSICOLOGO, { irALogin() }) { u ->
                 PsiHomeScreen(
@@ -210,7 +210,7 @@ fun AppNav() {
             }
         }
 
-        // ---------------- Comunes ----------------
+
         composable(Rutas.PRIVACIDAD) {
             PrivacidadScreen(onVolver = { nav.popBackStack() })
         }
@@ -227,7 +227,7 @@ fun AppNav() {
             }
         }
 
-        // ---------------- Estudiante ----------------
+
         composable(Rutas.EST_CODIGO) {
             RutaProtegida(usuario, Rol.ESTUDIANTE, { irALogin() }) { u ->
                 EstCodigoScreen(

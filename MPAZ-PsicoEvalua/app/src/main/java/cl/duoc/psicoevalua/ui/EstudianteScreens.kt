@@ -14,6 +14,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -207,6 +208,31 @@ fun EstCuestionarioScreen(id: Int, onFinalizar: () -> Unit, onSalir: () -> Unit)
     var dialogoSalir by remember { mutableStateOf(false) }
 
     BackHandler { dialogoSalir = true }
+
+    if (total == 0) {
+        PantallaBase(titulo = "Cuestionario", onVolver = onSalir) { pad ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(pad)
+                    .padding(24.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Text(
+                        "Este instrumento no contiene preguntas disponibles.",
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Center
+                    )
+                    BotonPrincipal(texto = "Volver", onClick = onSalir)
+                }
+            }
+        }
+        return
+    }
 
     val respondidas = respuestas.count { it >= 0 }
 

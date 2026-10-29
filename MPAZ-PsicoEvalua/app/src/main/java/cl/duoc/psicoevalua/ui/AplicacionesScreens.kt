@@ -199,8 +199,9 @@ fun DetalleAplicacionScreen(id: Int, usuario: Usuario, onVolver: () -> Unit) {
                             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                                 Text("${i + 1}. $pregunta", style = MaterialTheme.typography.bodyMedium)
                                 val r = app.respuestas.getOrNull(i)
+                                val textoRespuesta = r?.let { inst.escala.getOrNull(it) } ?: "—"
                                 Text(
-                                    "Respuesta: " + (if (r != null) inst.escala[r] else "—"),
+                                    "Respuesta: $textoRespuesta",
                                     color = MaterialTheme.colorScheme.primary,
                                     fontWeight = FontWeight.SemiBold,
                                     style = MaterialTheme.typography.bodyMedium

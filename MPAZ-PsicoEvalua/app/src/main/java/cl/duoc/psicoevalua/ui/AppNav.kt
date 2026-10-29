@@ -4,16 +4,21 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import cl.duoc.psicoevalua.data.DatabaseHelper
@@ -75,28 +80,52 @@ fun AppNav() {
     val nav = rememberNavController()
     var usuario by remember { mutableStateOf<Usuario?>(null) }
 
+    // Obtener la ruta actual para el navbar
+    val entradaActual by nav.currentBackStackEntryAsState()
+    val rutaActual = entradaActual?.destination?.route
+
+    // Definir en qué rutas se mostrará el Navbar
+    val rutasConNavbar = listOf(Rutas.PSI_HOME, Rutas.CATALOGO, Rutas.HISTORIAL, Rutas.PERFIL)
+    val mostrarNavbar = rutaActual in rutasConNavbar
+
     fun irALogin() {
         usuario = null
         nav.navigate(Rutas.LOGIN) { popUpTo(nav.graph.id) { inclusive = true } }
     }
 
-    NavHost(
-        navController = nav,
-        startDestination = Rutas.SPLASH,
-        enterTransition = {
-            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(350)) + fadeIn(tween(350))
-        },
-        exitTransition = {
-            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(350)) + fadeOut(tween(250))
-        },
-        popEnterTransition = {
-            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(350)) + fadeIn(tween(350))
-        },
-        popExitTransition = {
-            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(350)) + fadeOut(tween(250))
+    Scaffold(
+        bottomBar = {
+            if (mostrarNavbar) {
+                BarraNavegacionInferior(
+                    rutaActual = rutaActual,
+                    alSeleccionar = { rutaDestino ->
+                        nav.navigate(rutaDestino) {
+                            popUpTo(nav.graph.findStartDestination().id) { saveState = true }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
+                )
+            }
         }
-    ) {
-
+    ) { paddingValores ->
+        NavHost(
+            navController = nav,
+            startDestination = Rutas.SPLASH,
+            modifier = Modifier.padding(paddingValores), // Evita que el navbar tape el contenido
+            enterTransition = {
+                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(350)) + fadeIn(tween(350))
+            },
+            exitTransition = {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(350)) + fadeOut(tween(250))
+            },
+            popEnterTransition = {
+                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(350)) + fadeIn(tween(350))
+            },
+            popExitTransition = {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(350)) + fadeOut(tween(250))
+            }
+        ) {
         composable(Rutas.SPLASH) {
             SplashScreen(onTerminar = {
                 nav.navigate(Rutas.LOGIN) { popUpTo(Rutas.SPLASH) { inclusive = true } }
@@ -274,4 +303,5 @@ fun AppNav() {
             }
         }
     }
+}
 }

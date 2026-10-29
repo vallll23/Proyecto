@@ -33,7 +33,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Psychology
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -45,6 +49,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -70,9 +77,45 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.material.icons.automirrored.filled.List
 import cl.duoc.psicoevalua.data.EstadoAplicacion
 import cl.duoc.psicoevalua.data.EstadoInstrumento
 import kotlinx.coroutines.delay
+
+data class ItemNav(val ruta:String, val icono: ImageVector, val titulo: String)
+
+@Composable
+fun BarraNavegacionInferior(
+    rutaActual: String?,
+    alSeleccionar: (String) -> Unit
+){
+    val items = listOf(
+        ItemNav(Rutas.PSI_HOME,Icons.Filled.Home,"Inicio"),
+        ItemNav(Rutas.CATALOGO, Icons.AutoMirrored.Filled.List,"Catálogo"),
+        ItemNav(Rutas.HISTORIAL, Icons.Filled.History,"Historial"),
+        ItemNav(Rutas.PERFIL,Icons.Filled.Person,"Perfil")
+    )
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.surface,
+        tonalElevation = 8.dp
+    ){
+        items.forEach { item ->
+            NavigationBarItem(
+                icon = {Icon(item.icono, contentDescription = item.titulo)},
+                label = {Text(item.titulo)},
+                selected = rutaActual == item.ruta,
+                onClick = {alSeleccionar(item.ruta)},
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MaterialTheme.colorScheme.primary,
+                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            )
+        }
+    }
+}
 
 
 @Composable

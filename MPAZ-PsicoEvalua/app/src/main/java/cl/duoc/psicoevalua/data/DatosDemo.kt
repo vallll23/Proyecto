@@ -196,9 +196,9 @@ object DatosDemo {
         RegistroTraza("26-10-2026 15:26", "psicologo@mpaz.cl", "Aplicación #2 marcada como revisada")
     )
 
-    fun instrumento(id: Int): Instrumento = instrumentos.first { it.id == id }
+    fun instrumento(id: Int): Instrumento = instrumentos.firstOrNull { it.id == id } ?: instrumentos.first()
 
-    fun aplicacion(id: Int): Aplicacion = aplicaciones.first { it.id == id }
+    fun aplicacion(id: Int): Aplicacion = aplicaciones.firstOrNull { it.id == id } ?: aplicaciones.first()
 
     fun puntaje(app: Aplicacion): Int? {
         val inst = instrumento(app.instrumentoId)

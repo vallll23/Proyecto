@@ -288,8 +288,11 @@ fun RegistroScreen(
     val scope = rememberCoroutineScope()
 
     val errNombre = if (intento && nombre.isBlank()) "Ingresa un nombre (ficticio)." else null
-    val errCorreo = if (intento && !android.util.Patterns.EMAIL_ADDRESS.matcher(correo.trim()).matches())
-        "Ingresa un correo válido." else null
+    val errCorreo = if (intento) {
+        if (correo.isBlank()) "Ingresa un correo."
+        else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo.trim()).matches()) "Ingresa un correo válido."
+        else null
+    } else null
     val errClave = if (intento && clave.length < 6) "Mínimo 6 caracteres." else null
     val errConfirmar = if (intento && confirmar != clave) "Las contraseñas no coinciden." else null
 

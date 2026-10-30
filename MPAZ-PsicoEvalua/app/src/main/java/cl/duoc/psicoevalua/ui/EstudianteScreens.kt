@@ -105,7 +105,7 @@ fun EstCodigoScreen(
             }
             Aparecer(1) {
                 Text(
-                    "Escribe el código temporal que te entregó el psicólogo para comenzar. Hazlo dentro de la escuela y con supervisión.",
+                    "Escribe el código que te entregó el psicólogo para comenzar. Hazlo dentro de la escuela y con supervisión.",
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center
                 )
@@ -138,9 +138,9 @@ fun EstCodigoScreen(
 
     DialogoFuturaActualizacion(
         visible = dialogo,
-        detalle = "La validación del código aún no está conectada a una base de datos. Puedes continuar con el instrumento de demostración.",
+        detalle = "El código solo puede utilizarse una vez. Una vez que lo hayas ingresado, quedará invalidado y no podrá volver a utilizarse.",
         onCerrar = { dialogo = false },
-        textoContinuar = "Continuar con la demostración",
+        textoContinuar = "Continuar",
         onContinuar = {
             dialogo = false
             onContinuar()
@@ -181,7 +181,7 @@ fun EstInstruccionesScreen(id: Int, onVolver: () -> Unit, onComenzar: () -> Unit
                         Text("Antes de comenzar", fontWeight = FontWeight.Bold, fontSize = 18.sp)
                         Text(inst.instrucciones, fontSize = 18.sp, lineHeight = 26.sp)
                         Text(
-                            "Son ${inst.preguntas.size} preguntas. Puedes volver a la pregunta anterior si quieres cambiar una respuesta.",
+                            "Son ${inst.preguntas.size} preguntas. No Puedes volver a la pregunta anterior.",
                             fontSize = 16.sp
                         )
                     }
@@ -342,9 +342,9 @@ fun EstCuestionarioScreen(id: Int, onFinalizar: () -> Unit, onSalir: () -> Unit)
 
     DialogoFuturaActualizacion(
         visible = dialogoEnvio,
-        detalle = "El envío de respuestas aún no se guarda en una base de datos. Continúa para ver la confirmación de demostración.",
+        detalle = "El envío de respuestas aún no se guarda en una base de datos. Continúa para ver la confirmación.",
         onCerrar = { dialogoEnvio = false },
-        textoContinuar = "Enviar (demostración)",
+        textoContinuar = "Enviar",
         onContinuar = {
             dialogoEnvio = false
             onFinalizar()

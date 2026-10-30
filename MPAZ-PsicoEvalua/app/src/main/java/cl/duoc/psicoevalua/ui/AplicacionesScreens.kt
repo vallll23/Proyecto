@@ -237,7 +237,7 @@ fun DetalleAplicacionScreen(id: Int, usuario: Usuario, onVolver: () -> Unit) {
 
                 Aparecer(11) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        SeccionTitulo("Observación profesional (ficticia)")
+                        SeccionTitulo("Observación profesional")
                         CampoTexto(
                             valor = observacion,
                             alCambiar = { observacion = it },

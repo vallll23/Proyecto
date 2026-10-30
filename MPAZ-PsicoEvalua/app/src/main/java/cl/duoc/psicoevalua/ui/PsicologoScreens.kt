@@ -121,7 +121,7 @@ fun PsiHomeScreen(
                         )
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            "Solo tú puedes ver respuestas y resultados. Toda la información de esta demostración es ficticia.",
+                            "Solo tú puedes ver respuestas y resultados.",
                             color = Color.White.copy(alpha = 0.9f),
                             style = MaterialTheme.typography.bodyMedium
                         )
@@ -346,8 +346,8 @@ fun CrearAplicacionScreen(
     val disponibles = DatosDemo.instrumentos.filter { it.estado == EstadoInstrumento.DISPONIBLE }
     val instrumentoSel = disponibles.firstOrNull { it.id == seleccionado }
 
-    val errEst = if (intento && estudiante.isBlank()) "Ingresa un identificador ficticio (ej. EST-006)." else null
-    val errCurso = if (intento && curso.isBlank()) "Ingresa un curso ficticio (ej. 5.º A)." else null
+    val errEst = if (intento && estudiante.isBlank()) "Ingresa un identificador (ej. EST-006)." else null
+    val errCurso = if (intento && curso.isBlank()) "Ingresa un curso." else null
     val errInst = if (intento && instrumentoSel == null) "Selecciona un instrumento." else null
 
     PantallaBase(titulo = "Nueva aplicación", onVolver = onVolver) { pad ->
@@ -360,16 +360,16 @@ fun CrearAplicacionScreen(
         ) {
             Aparecer(0) {
                 Text(
-                    "Usa solo identificadores y cursos ficticios. No ingreses nombres ni RUT reales.",
+                    "Usa solo identificadores y cursos. No ingreses tu RUT.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )
             }
             Aparecer(1) {
-                CampoTexto(estudiante, { estudiante = it }, "Identificador del estudiante (ficticio)", icono = Icons.Filled.Person, error = errEst)
+                CampoTexto(estudiante, { estudiante = it }, "Identificador del estudiante", icono = Icons.Filled.Person, error = errEst)
             }
             Aparecer(2) {
-                CampoTexto(curso, { curso = it }, "Curso (ficticio)", error = errCurso)
+                CampoTexto(curso, { curso = it }, "Curso", error = errCurso)
             }
             Aparecer(3) {
                 ExposedDropdownMenuBox(expanded = expandido, onExpandedChange = { expandido = it }) {
@@ -433,9 +433,9 @@ fun CrearAplicacionScreen(
 
     DialogoFuturaActualizacion(
         visible = dialogo,
-        detalle = "La aplicación aún no se guarda en una base de datos. Puedes ver una demostración del código temporal.",
+        detalle = "El codigo es temporal asi que anotalo.",
         onCerrar = { dialogo = false },
-        textoContinuar = "Ver código de demostración",
+        textoContinuar = "Ver código",
         onContinuar = {
             dialogo = false
             onGenerarCodigo()
@@ -485,7 +485,7 @@ fun CodigoTemporalScreen(onVolver: () -> Unit, onSupervisar: () -> Unit, onPanel
             }
             Aparecer(2) {
                 Text(
-                    "Código de demostración · válido 30 minutos (simulado)",
+                    "Código de demostración · válido 30 minutos",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f)
                 )

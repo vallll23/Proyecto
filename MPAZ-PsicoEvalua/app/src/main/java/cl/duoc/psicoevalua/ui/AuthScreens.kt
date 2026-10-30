@@ -287,7 +287,7 @@ fun RegistroScreen(
     var exito by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
-    val errNombre = if (intento && nombre.isBlank()) "Ingresa un nombre (ficticio)." else null
+    val errNombre = if (intento && nombre.isBlank()) "Ingresa un nombre." else null
     val errCorreo = if (intento) {
         if (correo.isBlank()) "Ingresa un correo."
         else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo.trim()).matches()) "Ingresa un correo válido."
@@ -328,13 +328,13 @@ fun RegistroScreen(
         ) {
             Aparecer(0) {
                 Text(
-                    "Regístrate con datos ficticios. No uses nombres, RUT ni información real de estudiantes.",
+                    "Regístrate con datos. No uses RUT ni información real de estudiantes.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )
             }
             Aparecer(1) {
-                CampoTexto(nombre, { nombre = it }, "Nombre (ficticio)", icono = Icons.Filled.Person, error = errNombre)
+                CampoTexto(nombre, { nombre = it }, "Nombre", icono = Icons.Filled.Person, error = errNombre)
             }
             Aparecer(2) {
                 CampoTexto(
